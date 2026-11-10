@@ -1,86 +1,52 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Cu64</title>
+    <title>Dong Duong</title>
     <link>https://cu64.github.io/</link>
-    <description>Recent content on Cu64</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Posts by Dong Duong</description>
     <language>en</language>
-    <lastBuildDate>Wed, 08 Sep 2021 00:00:01 +0700</lastBuildDate><atom:link href="https://cu64.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://cu64.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Junior Hacking Talent - Quay Ngược Thời Gian Writeup</title>
-      <link>https://cu64.github.io/posts/jht-quay-nguoc-thoi-gian/</link>
-      <pubDate>Wed, 08 Sep 2021 00:00:01 +0700</pubDate>
-      
-      <guid>https://cu64.github.io/posts/jht-quay-nguoc-thoi-gian/</guid>
-      <description>We&amp;rsquo;ll start off by dumping all the strings contained in the memory dump with strings
-❯ strings mem.mem &amp;gt; memstr.txt As the CTF hinted that there was SSH connection established with the use of a private key, we can look for those with grep and the fact that these keys usually starts with BEGIN OPENSSH PRIVATE KEY.
-❯ grep &amp;#34;OPENSSH PRIVATE KEY&amp;#34; memstr.txt -A 40 Looking at the result, there are plenty of matches for the start of the keys but most of them are missing the end which is END OPENSSH PRIVATE KEY.</description>
+      <title>Introducing TH10 Gym</title>
+      <link>https://cu64.github.io/engineering/th10-gym/</link>
+      <guid>https://cu64.github.io/engineering/th10-gym/</guid>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
     </item>
-    
     <item>
-      <title>Junior Hacking Talent - Kid Protocol Writeup</title>
-      <link>https://cu64.github.io/posts/jht-kid-protocol/</link>
-      <pubDate>Wed, 08 Sep 2021 00:00:00 +0700</pubDate>
-      
-      <guid>https://cu64.github.io/posts/jht-kid-protocol/</guid>
-      <description>Looking at the source code, we can see the basic processing of each packet
-class KidPacket: def __init__(self, rawPacket): self.parse(rawPacket) def parse(self, rawPacket): self.contentLength = struct.unpack(&amp;#34;&amp;lt;H&amp;#34;, rawPacket[0:2])[0] data = rawPacket[2:] if self.contentLength != len(data): raise Exception(&amp;#34;Bad content-length&amp;#34;) try: self.body = json.loads(data) except: raise Exception(&amp;#34;Bad format&amp;#34;) def getValue(object, key): try: return object[key] except KeyError: raise Exception(&amp;#34;Missing &amp;#39;%s&amp;#39; param&amp;#34; % key) kidPacket = KidPacket(rawPacket) action = getValue(kidPacket.body, &amp;#34;action&amp;#34;) inputFile = getValue(kidPacket.body, &amp;#34;file&amp;#34;) From this, we can figure out the format for each packet: they all starts with 2 bytes containing the length of the data packed as an unsigned short in little-endian format (&amp;lt;H).</description>
-    </item>
-    
-    <item>
-      <title>Junior Hacking Talent - Mã Máy Writeup</title>
-      <link>https://cu64.github.io/posts/jht-ma-may/</link>
-      <pubDate>Wed, 08 Sep 2021 00:00:00 +0700</pubDate>
-      
+      <title>Junior Hacking Talent: Mã Máy writeup</title>
+      <link>https://cu64.github.io/security/jht-ma-may/</link>
       <guid>https://cu64.github.io/posts/jht-ma-may/</guid>
-      <description>❯ nc 188.166.233.168 4790 ------------------------------------------------- | 080487b4 &amp;lt;print_flag&amp;gt;: | | 080487b4: 55 push ebp | | 080487b5: 89 e5 mov ebp,esp | | 080487b7: 53 push ebx | | .... | ------------------------------------------------- Looking at the Assembly, we notice that print_flag() resides at the address 0x080487b4, this is what we need to execute.
-There are multiple ways to jump to that function but what I&amp;rsquo;ll be using is push+ret.
-push 0x080487b4 ret Essentially, the push instruction will put 0x080487b4 at the top of the stack, which will later be popped off by ret and placed into EIP.</description>
+      <pubDate>Wed, 08 Sep 2021 00:00:00 GMT</pubDate>
     </item>
-    
     <item>
-      <title>Junior Hacking Talent - Buffer Overflow Writeup</title>
-      <link>https://cu64.github.io/posts/jht-bof/</link>
-      <pubDate>Tue, 07 Sep 2021 00:00:00 +0700</pubDate>
-      
+      <title>Junior Hacking Talent: Kid Protocol writeup</title>
+      <link>https://cu64.github.io/security/jht-kid-protocol/</link>
+      <guid>https://cu64.github.io/posts/jht-kid-protocol/</guid>
+      <pubDate>Wed, 08 Sep 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Junior Hacking Talent: Quay Ngược Thời Gian writeup</title>
+      <link>https://cu64.github.io/security/jht-quay-nguoc-thoi-gian/</link>
+      <guid>https://cu64.github.io/posts/jht-quay-nguoc-thoi-gian/</guid>
+      <pubDate>Wed, 08 Sep 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Junior Hacking Talent: Buffer Overflow writeup</title>
+      <link>https://cu64.github.io/security/jht-bof/</link>
       <guid>https://cu64.github.io/posts/jht-bof/</guid>
-      <description>As always, we will be starting out with taking a peek at the source code. More specifically, the main function.
-int main() { setbuf(stdout, 0); char password[20]; char isAdmin = &amp;#39;0&amp;#39;; int loginAsUser; banner(); printf(&amp;#34;Đăng nhập với user:\n1. Nhập 1 là Admin\n2. Nhập 2 là Guest\n&amp;#34;); scanf(&amp;#34;%d%*c&amp;#34;,&amp;amp;loginAsUser); if(loginAsUser == 2) guest_account(); else if(loginAsUser == 1) { admin_account(); printf(&amp;#34;Nhập password:\n&amp;#34;); gets(password); // Hella sús ngl  if(!strncmp(password,admin_password,20)) isAdmin = &amp;#39;1&amp;#39;; else wrong_password(); } if(isAdmin == &amp;#39;1&amp;#39;) print_flag(); return 0; } What jumped at me is the gets() function used when reading the password.</description>
+      <pubDate>Tue, 07 Sep 2021 00:00:00 GMT</pubDate>
     </item>
-    
     <item>
-      <title>Pi Network&#39;s heel of Achilles</title>
-      <link>https://cu64.github.io/posts/pi-network/</link>
-      <pubDate>Mon, 17 May 2021 00:00:00 +0700</pubDate>
-      
+      <title>Pi Network’s heel of Achilles</title>
+      <link>https://cu64.github.io/security/pi-network/</link>
       <guid>https://cu64.github.io/posts/pi-network/</guid>
-      <description>After hearing the news from Ryan on Twitter about Pi Network, it seemed like he worked with the iOS version of the app and it was only a announcement and isn&amp;rsquo;t really detailed so we decided to do our own analysis on the latest Android version of the Pi Network app (version 1.30.3).
-While doing our own thorough investigation, we encountered many difficulties such as SSL Pinning preventing us from just strait up sliding in Burp Suite and reading the data so the steps taken to address this are the followings.</description>
+      <pubDate>Mon, 17 May 2021 00:00:00 GMT</pubDate>
     </item>
-    
     <item>
-      <title>Public Amazon S3 Buckets and the risk of data leakage</title>
-      <link>https://cu64.github.io/posts/public-aws-s3-buckets/</link>
-      <pubDate>Thu, 18 Feb 2021 00:00:00 +0700</pubDate>
-      
+      <title>Public Amazon S3 buckets and the risk of data leakage</title>
+      <link>https://cu64.github.io/security/public-aws-s3-buckets/</link>
       <guid>https://cu64.github.io/posts/public-aws-s3-buckets/</guid>
-      <description>We&amp;rsquo;ve seen the recent CityBee leak from Lithuania (the report is on this site). The main cause of this strategy is a misconfiguration of the Azure Blob Storage, allowing public unauthenticated access leading to the leakage of over 110,000 users&#39; information.
-So I was thinking, what if we could replicate this with Amazon S3 Buckets? And heck yeah it worked.
-So just like the steps shown on Behind the scenes of CityBee customer data leak I will generate a list of domain names that belong to Amazon S3 Buckets.</description>
+      <pubDate>Thu, 18 Feb 2021 00:00:00 GMT</pubDate>
     </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://cu64.github.io/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://cu64.github.io/about/</guid>
-      <description>Hi, I’m Duong Tieu Dong (aka Cu64), a young security researcher from Vietnam who is currently studying at Phan Dinh Phung High School.
-I’m interested in web and mobile application penetration testing.
-This is my personal blog, the place where I’ll post on security, programming and other subjects. A copy of some of the posts may be found on kernal.eu
-You can reach me via email at cu64@kernal.eu</description>
-    </item>
-    
   </channel>
 </rss>
