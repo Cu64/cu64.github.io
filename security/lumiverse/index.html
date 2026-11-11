@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preload" href="/_astro/be-vietnam-pro-latin-400-normal.PpnXBOrz.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/be-vietnam-pro-latin-500-normal.B6LVzGNe.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/be-vietnam-pro-latin-600-normal.BZDkUTrt.woff2" as="font" type="font/woff2" crossorigin><meta name="description" content="Finding a path to code execution in Lumiverse"><title>Finding a path to code execution in Lumiverse | Dong Duong</title><link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48"><link rel="canonical" href="https://cu64.github.io/security/lumiverse/"><link rel="alternate" type="application/rss+xml" title="Dong Duong" href="/index.xml"><link rel="stylesheet" href="/_astro/Header.CvxszV1s.css"><link rel="stylesheet" href="/_astro/article.6ZA151_S.css"></head><body><div id="dong-moon-preview"><header class="site-header"><a class="site-signature" href="/">Dong Duong <span>/ Cu64</span></a><nav aria-label="Main navigation"><a href="/research/">Research</a><a href="/engineering/">Engineering</a><a href="/security/">Security</a><a href="/about/">About</a></nav></header><main class="article-page"><article><header class="article-header"><h1>Finding a path to code execution in Lumiverse</h1><time datetime="2026-05-14">May 14, 2026</time></header><div class="article-body"><p>I reviewed Lumiverse, a self-hosted AI chat app, and found five vulnerabilities. Two could be chained together for unauthenticated RCE. A registration race condition let an attacker create an account without administrator approval. That account had enough access to exploit the Model Context Protocol (MCP) vulnerability and run code on the server.</p>
+
+<h2 id="remote-code-execution-through-mcp">Remote code execution through MCP</h2>
+<p class="article-advisory"><a href="https://github.com/prolix-oc/Lumiverse/security/advisories/GHSA-mfwv-ch2f-9j5v">CVE-2026-44450</a></p>
+<p>Any logged-in user could run code on the Lumiverse server through its MCP integration. With the <code>stdio</code> transport, Lumiverse launches a local tool as a subprocess and communicates with it over standard input and output.</p>
+<p>Lumiverse checked the executable against an allowlist and passed the arguments through without any checks. The allowlist included Node.js (<code>node</code>), which can execute JavaScript supplied as an argument. A regular user could configure an MCP tool and run code with the permissions of the Lumiverse server process. That could expose saved chats, uploads, and other files the process could read. The fix restricted the arguments Lumiverse accepts when launching tools.</p>
+
+<h2 id="registration-race-condition">Registration race condition</h2>
+<p class="article-advisory"><a href="https://github.com/prolix-oc/Lumiverse/security/advisories/GHSA-6fcp-x253-wwv7">CVE-2026-44443</a></p>
+<p>Lumiverse restricted account creation to administrators. The registration check looked for a valid authorization token without checking whether it belonged to the request being processed. While an administrator’s token was valid, the check could accept another user’s registration. The fix bound the token to the administrator’s request.</p>
+<p>Registration was the timing-dependent part of the chain. Once the attacker had a valid session, regular user permissions were enough for the MCP bug.</p>
+
+<h2 id="sandbox-escape-with-custom-tsx-components">Sandbox escape with custom TSX components</h2>
+<p class="article-advisory"><a href="https://github.com/prolix-oc/Lumiverse/security/advisories/GHSA-rgp6-55rw-5xf4">CVE-2026-44451</a></p>
+<p>Lumiverse used a custom sandbox to run React components written in TSX. It blocked direct access to <code>window</code> while exposing DOM elements that could reach it. A malicious component could therefore make authenticated requests as the user who enabled it.</p>
+<p>Custom components in imported themes were disabled by default, so the user had to enable one for the code to run. The fix added a validator that parses the TSX and checks its syntax tree.</p>
+
+<h2 id="code-execution-during-extension-installation">Code execution during extension installation</h2>
+<p class="article-advisory"><a href="https://github.com/prolix-oc/Lumiverse/security/advisories/GHSA-8x98-3wjp-pmj9">CVE-2026-44444</a></p>
+<p>Spindle, Lumiverse’s extension system, ran <code>bun install</code> before scanning the extension’s backend bundle. Bun could execute package lifecycle scripts during installation, so a malicious extension could run code on the server before the scan started. Spindle used the same sequence on updates.</p>
+<p>The fix changed dependency installation to <code>bun install --ignore-scripts</code>.</p>
+
+<h2 id="command-injection-in-smb-migration">Command injection in SMB migration</h2>
+<p class="article-advisory"><a href="https://github.com/prolix-oc/Lumiverse/security/advisories/GHSA-4v38-9hqq-7j53">CVE-2026-44449</a></p>
+<p>Lumiverse used <code>smbclient</code> to check whether files existed on a network share. In one fallback, it split the path into a directory and filename, validated the directory, and inserted the unchecked filename into a command string. <code>smbclient</code> interpreted that string as commands, which let the filename change what ran on the host.</p>
+<p>The affected operation required an owner or administrator and a host with <code>smbclient</code> installed. The fix added filename validation to the fallback.</p>
+
+<h2 id="disclosure-timeline">Disclosure timeline</h2>
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr><th scope="col">Date</th><th scope="col">Event</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><time datetime="2026-04-28">April 28, 2026</time></td><td>I reported the five vulnerabilities to the Lumiverse maintainers.</td></tr>
+      <tr><td><time datetime="2026-04-29">April 29, 2026</time></td><td>The maintainers acknowledged the report.</td></tr>
+      <tr><td><time datetime="2026-05-06">May 6, 2026</time></td><td>GitHub published the five security advisories.</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>The advisories list versions through 0.9.5 as affected and 0.9.7 as the fixed release. Thanks to Prolix for the quick response and fixes. <a href="https://github.com/prolix-oc/Lumiverse/security/advisories">Lumiverse security advisories</a></p>
+
+<h2 id="lessons-learned">Lessons learned</h2>
+<ul>
+  <li><strong>Validate every part of the input a command interprets.</strong> An executable allowlist leaves the arguments to review. Apply the same validation on fallback paths.</li>
+  <li><strong>Review what code can access from the moment it runs.</strong> A scan that runs after installation can miss code that already executed. A browser sandbox has to account for what components can reach through the objects it exposes.</li>
+</ul>
+
+<h2 id="reviewing-ai-generated-code">Reviewing AI-generated code</h2>
+<p>Review the full diff against the task you gave the AI. Check that it solves the problem and follows the project’s conventions. If it adds a dependency, verify the package and check whether the project already has what it needs.</p>
+<p>Run the existing tests and use static analysis in CI to catch common issues. CodeQL is one option for security scanning. Read any test changes as part of the review. If the AI rewrote a failing test, check that the new assertions still enforce the original requirement.</p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://docs.github.com/en/copilot/tutorials/review-ai-generated-code">GitHub’s guide to reviewing AI-generated code</a></li>
+  <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Secure_Coding_with_AI_Cheat_Sheet.html">OWASP’s Secure Coding with AI cheat sheet</a></li>
+</ul>
+</div></article><footer class="article-footer"><a href="/security/">All security posts</a></footer></main><footer class="site-footer"><a href="/index.xml">RSS feed</a></footer></div></body></html>
