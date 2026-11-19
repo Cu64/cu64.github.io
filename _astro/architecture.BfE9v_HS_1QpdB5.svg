@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="pele pele-flowchart" viewBox="0 0 481 156" width="481" height="156" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_r:var(--pele-radius,4px);--_fm:var(--pele-font-mono,monospace);font:17px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="flowchart" aria-labelledby="figure-title" aria-describedby="figure-desc">
+<title id="figure-title">Work assignment within one task</title>
+<desc id="figure-desc">The main agent and planner can both add items to the task’s work queue. An available worker claims an item from that queue.</desc>
+<metadata>Generated with Pele 1.13.0
+<![CDATA[flowchart LR
+  M["Main agent"] --> Q["Work queue"]
+  P["Planner"] --> Q
+  Q --> W["Worker<br/>claims item"]]]>
+</metadata>
+<style>
+  .pele {
+    --pele-bg: #151614; --pele-fg: #e8dfcd; --pele-muted: #b7b2a5;
+    --pele-surface: #1b1d18; --pele-line: #b7b2a5; --pele-border: #847d6e;
+    --pele-accent: #d8b783; --pele-radius: 3px; --pele-font: "Segoe UI", sans-serif;
+    --pele-series-1: #b7b2a5; --pele-series-2: #e8dfcd; --pele-series-3: #d8b783;
+  }
+  .pele-timeline .pele-period > rect, .pele-timeline .pele-event rect { fill: none; }
+  .pele-timeline .pele-period > text { fill: var(--pele-fg); font-weight: 600; }
+  .pele-timeline .pele-period:last-child > text { fill: var(--pele-accent); }
+  .pele-marker { fill: #d8b783; }
+</style>
+<g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round">
+<g class="pele-edge" data-id="L_M_Q_0">
+<path d="M128.1,33C145.6,33 145.6,70 163.1,70L169.1,70"/>
+<path class="pele-marker" d="M176.1,70L168.1,73.36L168.1,66.64Z" fill="var(--_l)" stroke="none"/>
+</g>
+<g class="pele-edge" data-id="L_P_Q_0">
+<path d="M128.1,123C145.6,123 145.6,86 163.1,86L169.1,86"/>
+<path class="pele-marker" d="M176.1,86L168.1,89.36L168.1,82.64Z" fill="var(--_l)" stroke="none"/>
+</g>
+<g class="pele-edge" data-id="L_Q_W_0">
+<path d="M303.75,78L344.75,78"/>
+<path class="pele-marker" d="M351.75,78L343.75,81.36L343.75,74.64Z" fill="var(--_l)" stroke="none"/>
+</g>
+</g>
+<g class="pele-nodes">
+<g class="pele-node pele-shape-rect" data-id="M" transform="translate(68.05,33)">
+<rect x="-60.05" y="-25" width="120.1" height="50" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/>
+<text class="pele-label" x="0" y="5.95" text-anchor="middle">Main agent</text>
+</g>
+<g class="pele-node pele-shape-rect" data-id="Q" transform="translate(239.92,78)">
+<rect x="-63.82" y="-25" width="127.65" height="50" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/>
+<text class="pele-label" x="0" y="5.95" text-anchor="middle">Work queue</text>
+</g>
+<g class="pele-node pele-shape-rect" data-id="P" transform="translate(80.81,123)">
+<rect x="-47.29" y="-25" width="94.58" height="50" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/>
+<text class="pele-label" x="0" y="5.95" text-anchor="middle">Planner</text>
+</g>
+<g class="pele-node pele-shape-rect" data-id="W" transform="translate(412.25,78)">
+<rect x="-60.5" y="-34" width="121" height="68" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/>
+<text class="pele-label" text-anchor="middle" xml:space="preserve">
+<tspan x="0" y="-5.05">Worker</tspan>
+<tspan x="0" y="16.95">claims item</tspan>
+</text>
+</g>
+</g>
+</svg>

@@ -7,6 +7,12 @@
     <language>en</language>
     <atom:link href="https://cu64.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Inside ARTEX, the framework used in DIVD’s 12-minute escalation to root</title>
+      <link>https://cu64.github.io/security/inside-artex/</link>
+      <guid>https://cu64.github.io/security/inside-artex/</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Training an agent to clear Touhou 10 on Lunatic</title>
       <link>https://cu64.github.io/research/touhou-10-rl/</link>
       <guid>https://cu64.github.io/research/touhou-10-rl/</guid>

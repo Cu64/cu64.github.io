@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="pele pele-timeline" viewBox="0 0 360 202" width="360" height="202" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_r:var(--pele-radius,4px);--_fm:var(--pele-font-mono,monospace);font:17px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="timeline" aria-labelledby="figure-title" aria-describedby="figure-desc">
+<title id="figure-title">Minutes since initial access at DIVD</title>
+<desc id="figure-desc">The attacker gained access at minute zero and reached root at minute twelve. DIVD’s monitoring raised its first alert at minute nineteen.</desc>
+<metadata>Generated with Pele 1.13.0
+<![CDATA[timeline TD
+  0 min : Helpdesk access
+  12 min : Attacker reached root
+  19 min : First monitoring alert]]>
+</metadata>
+<style>
+  .pele {
+    --pele-bg: #151614; --pele-fg: #e8dfcd; --pele-muted: #b7b2a5;
+    --pele-surface: #1b1d18; --pele-line: #b7b2a5; --pele-border: #847d6e;
+    --pele-accent: #d8b783; --pele-radius: 3px; --pele-font: "Segoe UI", sans-serif;
+    --pele-series-1: #b7b2a5; --pele-series-2: #e8dfcd; --pele-series-3: #d8b783;
+  }
+  .pele-timeline .pele-period > rect, .pele-timeline .pele-event rect { fill: none; }
+  .pele-timeline .pele-period > text { fill: var(--pele-fg); font-weight: 600; }
+  .pele-timeline .pele-period:last-child > text { fill: var(--pele-accent); }
+  .pele-marker { fill: #d8b783; }
+</style>
+<g transform="translate(34 0)">
+<path class="pele-axis" d="M146,8V187" fill="none" stroke="var(--_l)"/>
+<path class="pele-marker" d="M146,194L142.64,186L149.36,186Z" fill="var(--_l)" stroke="none"/>
+<g class="pele-node pele-period" data-id="0 min">
+<rect x="8" y="8" width="118" height="42" fill="var(--pele-series-1,#4c78a8)" style="rx:var(--_r)"/>
+<text fill="var(--_bg)" x="124" y="34.95" text-anchor="end">0 min</text>
+<path class="pele-edge" d="M134,29h24" fill="none" stroke="var(--_b)"/>
+<circle class="pele-dot" cx="146" cy="29" r="4" fill="var(--pele-series-1,#4c78a8)" stroke="var(--_bg)" stroke-width="2"/>
+<g class="pele-node pele-event">
+<rect x="174" y="9.5" width="178" height="39" fill="var(--pele-series-1,#4c78a8)" fill-opacity="0.16" style="rx:var(--_r)"/>
+<text font-size="15" x="168" y="34.25" text-anchor="start">Helpdesk access</text>
+</g>
+</g>
+<g class="pele-node pele-period" data-id="12 min" transform="translate(0 16.32)">
+<rect x="8" y="70" width="118" height="42" fill="var(--pele-series-2,#f58518)" style="rx:var(--_r)"/>
+<text fill="var(--_bg)" x="124" y="96.95" text-anchor="end">12 min</text>
+<path class="pele-edge" d="M134,91h24" fill="none" stroke="var(--_b)"/>
+<circle class="pele-dot" cx="146" cy="91" r="4" fill="var(--pele-series-2,#f58518)" stroke="var(--_bg)" stroke-width="2"/>
+<g class="pele-node pele-event">
+<rect x="174" y="71.5" width="178" height="39" fill="var(--pele-series-2,#f58518)" fill-opacity="0.16" style="rx:var(--_r)"/>
+<text font-size="15" x="168" y="96.25" text-anchor="start">Attacker reached root</text>
+</g>
+</g>
+<g class="pele-node pele-period" data-id="19 min">
+<rect x="8" y="132" width="118" height="42" fill="var(--pele-series-3,#54a24b)" style="rx:var(--_r)"/>
+<text fill="var(--_bg)" x="124" y="158.95" text-anchor="end">19 min</text>
+<path class="pele-edge" d="M134,153h24" fill="none" stroke="var(--_b)"/>
+<circle class="pele-dot" cx="146" cy="153" r="4" fill="var(--pele-series-3,#54a24b)" stroke="var(--_bg)" stroke-width="2"/>
+<g class="pele-node pele-event">
+<rect x="174" y="133.5" width="178" height="39" fill="var(--pele-series-3,#54a24b)" fill-opacity="0.16" style="rx:var(--_r)"/>
+<text font-size="15" x="168" y="158.25" text-anchor="start">First monitoring alert</text>
+</g>
+</g>
+</g>
+</svg>

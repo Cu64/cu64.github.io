@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="pele pele-flowchart" viewBox="0 0 356 197" width="356" height="197" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_r:var(--pele-radius,4px);--_fm:var(--pele-font-mono,monospace);font:17px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="flowchart" aria-labelledby="figure-title" aria-describedby="figure-desc">
+<title id="figure-title">Two tasks, one finding</title>
+<desc id="figure-desc">The helpdesk worker writes a finding in Task A. A worker in the linked follow-up, Task B, reads that same record.</desc>
+<metadata>Generated with Pele 1.13.0
+<![CDATA[flowchart TD
+  A["Task A<br/>Helpdesk review"] -->|worker writes| F["Helpdesk finding"]
+  B["Task B<br/>Linked follow-up"] -->|worker reads| F]]>
+</metadata>
+<style>
+  .pele {
+    --pele-bg: #151614; --pele-fg: #e8dfcd; --pele-muted: #b7b2a5;
+    --pele-surface: #1b1d18; --pele-line: #b7b2a5; --pele-border: #847d6e;
+    --pele-accent: #d8b783; --pele-radius: 3px; --pele-font: "Segoe UI", sans-serif;
+    --pele-series-1: #b7b2a5; --pele-series-2: #e8dfcd; --pele-series-3: #d8b783;
+  }
+  .pele-timeline .pele-period > rect, .pele-timeline .pele-event rect { fill: none; }
+  .pele-timeline .pele-period > text { fill: var(--pele-fg); font-weight: 600; }
+  .pele-timeline .pele-period:last-child > text { fill: var(--pele-accent); }
+  .pele-marker { fill: #d8b783; }
+</style>
+<g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round">
+<g class="pele-edge" data-id="L_A_F_0">
+<path d="M88.35,76L88.35,117.5C88.35,122.94 149.4,122.94 149.4,128.38L149.4,132"/>
+<path class="pele-marker" d="M149.4,139L146.04,131L152.76,131Z" fill="var(--_l)" stroke="none"/>
+</g>
+<g class="pele-edge" data-id="L_B_F_0">
+<path d="M268.11,76L268.11,117.5C268.11,122.94 207.06,122.94 207.06,128.38L207.06,132"/>
+<path class="pele-marker" d="M207.06,139L203.7,131L210.42,131Z" fill="var(--_l)" stroke="none"/>
+</g>
+</g>
+<g class="pele-edge-labels" font-size="15">
+<g class="pele-edge-label" data-id="L_A_F_0">
+<rect x="40.18" y="92.5" width="96.34" height="23" rx="3" fill="var(--_bg)"/>
+<text x="88.35" y="109.25" text-anchor="middle">worker writes</text>
+</g>
+<g class="pele-edge-label" data-id="L_B_F_0">
+<rect x="220.76" y="92.5" width="94.69" height="23" rx="3" fill="var(--_bg)"/>
+<text x="268.11" y="109.25" text-anchor="middle">worker reads</text>
+</g>
+</g>
+<g class="pele-nodes">
+<g class="pele-node pele-shape-rect" data-id="A" transform="translate(88.35,42)">
+<rect x="-80.35" y="-34" width="160.7" height="68" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/>
+<text class="pele-label" text-anchor="middle" xml:space="preserve">
+<tspan x="0" y="-5.05">Task A</tspan>
+<tspan x="0" y="16.95">Helpdesk review</tspan>
+</text>
+</g>
+<g class="pele-node pele-shape-rect" data-id="F" transform="translate(178.23,164)">
+<rect x="-80.83" y="-25" width="161.66" height="50" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/>
+<text class="pele-label" x="0" y="5.95" text-anchor="middle">Helpdesk finding</text>
+</g>
+<g class="pele-node pele-shape-rect" data-id="B" transform="translate(268.11,42)">
+<rect x="-79.41" y="-34" width="158.82" height="68" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/>
+<text class="pele-label" text-anchor="middle" xml:space="preserve">
+<tspan x="0" y="-5.05">Task B</tspan>
+<tspan x="0" y="16.95">Linked follow-up</tspan>
+</text>
+</g>
+</g>
+</svg>
